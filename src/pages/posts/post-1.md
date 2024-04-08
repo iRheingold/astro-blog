@@ -1,8 +1,9 @@
 ---
-title: 'My First Blog Post'
+layout: ../../layouts/MarkdownPostLayout.astro
+title: 'Blog Post 1'
 pubDate: 2024-04-01
 description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
+author: 'Jorge Alfaro'
 image:
     url: 'https://docs.astro.build/assets/full-logo-light.png'
     alt: 'The full Astro logo.'
