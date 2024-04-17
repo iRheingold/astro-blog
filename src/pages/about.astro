@@ -1,9 +1,58 @@
 ---
-import About from '../layouts/AboutLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+const allPosts = await getCollection("posts");
 const pageTitleAbout = "About Me";
----
 
-<About pageTitle={pageTitleAbout}>
-	<h1>My Astro Site</h1>
-</About>
+const identity = {
+	firstName: "Jorge",
+	country: "México",
+	occupation: "Dev",
+	hobbies: ["photography", "birdwatching", "baseball"],
+};
+const skills = ["Laravel", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = true;
+const goal = 3;
+
+
+// CSS variables
+const skillColor = "orange";
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+<style define:vars={{skillColor, fontWeight, textCase}}>
+
+	.skill {
+		color: var(--skillColor);
+		font-weight: var(--fontWeight);
+		text-transform: var(--textCase);
+	}
+</style>
+<BaseLayout pageTitle={pageTitleAbout}>
+	<p>Here are a few facts about me:</p>
+	<ul>
+		<li>My name is {identity.firstName}.</li>
+		<li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+		{identity.hobbies.length >= 2 &&
+			<li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+		}
+	</ul>
+	<p>My skills are:</p>
+	<ul>
+		{skills.map((skill) => <li class="skill">{skill}</li>)}
+	</ul>
+	<h2>... and my new Astro site!</h2>
+
+	<p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+
+	<p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+
+	{happy && <p>I am happy to be learning Astro!</p>}
+
+	{finished && <p>I finished this tutorial!</p>}
+
+	{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+</BaseLayout>

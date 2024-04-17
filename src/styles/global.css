@@ -20,6 +20,10 @@ h1 {
     margin: 1rem 0;
     font-size: 2.5rem;
 }
+h1 {
+    color: purple;
+    font-size: 4rem;
+}
 
 /* nav styles */
 .hamburger {
